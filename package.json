@@ -12,11 +12,11 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "VapixWrapper": "^0.1.0"
+    "vapix-wrapper": "^0.3.1"
   },
   "deprecated": false,
   "homepage": "https://github.com/pandosme/node-red-axis-acap",
-  "keywords": ["node-red","Axis","acap"],
+  "keywords": ["node-red","axis","acap"],
   "node-red": {
     "nodes": {
       "axis-acap": "axis-acap.js"
