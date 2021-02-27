@@ -1,2 +1,3 @@
-# node-red-axis-acap
-Simplifies Axis ACAP Management
+# node-red-contrib-axis-acap
+
+ACAP Management Simplification
