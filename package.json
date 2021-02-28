@@ -1,10 +1,10 @@
 {
   "name": "node-red-contrib-axis-acap",
-  "version": "0.1.0",
+  "version": "0.9.8",
   "description": "Axis ACAP Management",
   "author": {
     "name": "Fred Juhlin",
-    "email": "fred@juhlin.me"
+    "email": "fred.juhlin@gmail.com"
   },
   "license": "MIT",
   "bugs": {
@@ -12,7 +12,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "vapix-wrapper": "^0.3.1"
+    "vapix-wrapper": "^1.0.0"
   },
   "deprecated": false,
   "homepage": "https://github.com/pandosme/node-red-axis-acap",

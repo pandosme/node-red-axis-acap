@@ -2,7 +2,7 @@ const VapixWrapper = require('vapix-wrapper');
 
 module.exports = function(RED) {
 	function Axis_ACAP(config) {
-		console.log("Axis_ACAP");
+//		console.log("Axis_ACAP");
 		RED.nodes.createNode(this,config);
 		this.preset = config.preset;
 		this.action = config.action;
