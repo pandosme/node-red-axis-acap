@@ -77,15 +77,9 @@ RED.nodes.registerType('axis-acap',{
 <script type="text/x-red" data-help-name="axis-acap">
 	<h3>Inputs:</h3>
 	<dl class="message-properties">
-		<dt>credentials<span class="property-type">configuration</span></dt>
-		<dd>Camera credentials user and password is required.<br/>
-		Use <code>msg.user</code> and <code>msg.password</code> to override config</dd>
-	</dl>	
-	
-	<dl class="message-properties">
-		<dt>address<span class="property-type">string</span></dt>
-		<dd>IP address or FQDN.<br/>
-		Use <code>msg.address</code> to override config</dd>
+		<dt>Device<span class="property-type">configuration</span></dt>
+		<dd>A preset device with address, user and password that can be reused in multiple nodes without the need to inject with msg<br/>
+		Properties in device can be left empty and optional inject <code>msg.address</code>, <code>msg.user</code> and <code>msg.password</code></dd>
 	</dl>	
 
 	<dl class="message-properties">
@@ -118,7 +112,6 @@ RED.nodes.registerType('axis-acap',{
 	<dl class="message-properties">
 		<dt>msg.acap<span class="property-type">string</span></dt>
 		<dd>When an ACAP is sucessfully installed, <code>msg.acap</code> will be set to the ACAP ID.  This can be used when chaining to an ACAP Start node.</br>
-		<i>Note that older camera firmware will not respond with the ACAP ID and <code>msg.acap</code> will be null</i></dd>
+		<i>Note that older camera firmware will not reply with with the ACAP ID and <code>msg.acap</code> will be null</i></dd>
 	</dl>	
-
 </script>
