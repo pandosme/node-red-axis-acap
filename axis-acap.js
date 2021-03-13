@@ -19,7 +19,6 @@ module.exports = function(RED) {
 				passwaord: null,
 				protocol: "http"
 			}
-
 			var preset = RED.nodes.getNode(node.preset);
 			if( preset ) {
 				device.address = preset.address;
@@ -27,6 +26,7 @@ module.exports = function(RED) {
 				device.password = preset.credentials.password;
 				device.protocol = preset.protocol || "http";
 			}
+
 			if( msg.address ) device.address = msg.address;
 			if( msg.user ) device.user = msg.user;
 			if( msg.password ) device.password = msg.password;
@@ -124,7 +124,6 @@ module.exports = function(RED) {
 					node.status({fill:"blue",shape:"dot",text:"Installing ACAP..."});
 					VapixWrapper.Upload_ACAP( device, data, function(error, response){
 						msg.acap = null;
-//						console.log("axis-acap", response);
 						msg.error = error;
 						msg.payload = response;
 						if( error ) {
@@ -148,6 +147,7 @@ module.exports = function(RED) {
 
     RED.nodes.registerType("axis-acap", Axis_ACAP,{
 		defaults: {
+			action: { type:"name" },
 			preset: {type:"axis-preset"},
 			action: { type:"text" },
 			acap: { type:"text" },
