@@ -1,7 +1,6 @@
 # node-red-contrib-axis-acap
 
-Simplify managing ACAP Management Simplification in Node-RED.
-ACAP = Axis Camera Application Platform
+Simplify ACAP (Axis Camera Application Platform) Management in Axis devices.  
 
 This node depends on [node-red-contrib-axis-device](https://flows.nodered.org/node/node-red-contrib-axis-device) that should be installed first.
 
