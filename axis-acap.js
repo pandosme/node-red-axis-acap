@@ -47,8 +47,14 @@ module.exports = function(RED) {
 								if( item.Name === acap )
 									selectedACAP = item;
 							});
-							if( selectedACAP )
+							if( selectedACAP ) {
 								msg.payload = selectedACAP;
+							} else {
+								msg.error = acap + " is not installed";
+								msg.payload = null;
+								node.send(msg);
+								return;
+							}
 						}
 						node.send(msg);
 					});
@@ -58,7 +64,7 @@ module.exports = function(RED) {
 					node.status({fill:"blue",shape:"dot",text:"Starting ACAP..."});
 					if(!acap) {
 						node.status({fill:"red",shape:"dot",text:"Starting ACAP failed"});
-						msg.error = true;
+						msg.error = "ACAP ID not set";
 						msg.payload = "Invalid ACAP ID";
 						node.warn(msg.payload);
 						node.send(msg);
@@ -66,13 +72,12 @@ module.exports = function(RED) {
 					}
 					VapixWrapper.ACAP_Control( device, "start", acap, function(error, response){
 						if( error )
-							node.status({fill:"red",shape:"dot",text:"Starting ACAP failed"});
+							node.status({fill:"red",shape:"dot",text:"ACAP start failed"});
 						else
 							node.status({fill:"green",shape:"dot",text:"ACAP started"});
 
-						msg.error = error;
-
-						msg.payload = response;
+						msg.error = "ACAP start failed";
+						msg.payload = "Invalid ACAP ID";
 						node.send(msg);
 					});
 				break;
@@ -80,8 +85,8 @@ module.exports = function(RED) {
 				case "Stop ACAP":
 					node.status({fill:"blue",shape:"dot",text:"Stopping ACAP..."});
 					if(!acap) {
-						node.status({fill:"blue",shape:"dot",text:"Stopping ACAP failed"});
-						msg.error = true;
+						node.status({fill:"red",shape:"dot",text:"Stopping ACAP failed"});
+						msg.error = "ACAP ID not set";
 						msg.payload = "Invalid ACAP ID";
 						node.warn(msg.payload);
 						node.send(msg);
@@ -89,11 +94,11 @@ module.exports = function(RED) {
 					}
 					VapixWrapper.ACAP_Control( device, "stop", acap, function(error, response){
 						if( error )
-							node.status({fill:"blue",shape:"dot",text:"Stopping ACAP failed"});
+							node.status({fill:"red",shape:"dot",text:"ACAP stop failed"});
 						else
 							node.status({fill:"green",shape:"dot",text:"ACAP stopped"});
-						msg.error = error;
-						msg.payload = response;
+						msg.error = "ACAP stop failed";
+						msg.payload = "Invalid ACAP ID";
 						node.send(msg);
 					});
 				break;
@@ -102,7 +107,7 @@ module.exports = function(RED) {
 					node.status({fill:"blue",shape:"dot",text:"Removing ACAP..."});
 					if(!acap) {
 						node.status({fill:"red",shape:"dot",text:"Removing ACAP failed"});
-						msg.error = true;
+						msg.error = "ACAP ID not set";
 						msg.payload = "Invalid ACAP ID";
 						node.warn(msg.payload);
 						node.send(msg);
@@ -115,6 +120,12 @@ module.exports = function(RED) {
 							node.status({fill:"green",shape:"dot",text:"ACAP removed"});
 						msg.error = error;
 						msg.payload = response;
+						console.log(response);
+						if( response.search("Error: 4") >= 0) {
+							msg.error = false;
+							msg.payload = "ACAP not installed";
+							node.status({fill:"green",shape:"dot",text:"ACAP not present"});
+						}
 						node.send(msg);
 					});
 				break;
