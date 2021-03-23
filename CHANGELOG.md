@@ -1,3 +1,6 @@
+## Version 1.1.0
+* Minor flaws and clean up
+
 ## Version 1.0.1
 ACAP Status will now set msg.error and msg.payload will be null when requesting specific ACAP (msg.acap) that is not installed
 
