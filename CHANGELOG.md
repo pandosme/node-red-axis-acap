@@ -1,3 +1,6 @@
+## Version 1.2.0
+* Fixed faulty response from ACAP Start/Stop/Remove
+
 ## Version 1.1.0
 * Minor flaws and clean up
 

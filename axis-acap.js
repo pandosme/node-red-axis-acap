@@ -71,13 +71,12 @@ module.exports = function(RED) {
 						return;
 					}
 					VapixWrapper.ACAP_Control( device, "start", acap, function(error, response){
+						msg.error = error;
+						msg.payload = response;
 						if( error )
 							node.status({fill:"red",shape:"dot",text:"ACAP start failed"});
 						else
 							node.status({fill:"green",shape:"dot",text:"ACAP started"});
-
-						msg.error = "ACAP start failed";
-						msg.payload = "Invalid ACAP ID";
 						node.send(msg);
 					});
 				break;
@@ -93,12 +92,12 @@ module.exports = function(RED) {
 						return;
 					}
 					VapixWrapper.ACAP_Control( device, "stop", acap, function(error, response){
+						msg.error = error;
+						msg.payload = response;
 						if( error )
 							node.status({fill:"red",shape:"dot",text:"ACAP stop failed"});
 						else
 							node.status({fill:"green",shape:"dot",text:"ACAP stopped"});
-						msg.error = "ACAP stop failed";
-						msg.payload = "Invalid ACAP ID";
 						node.send(msg);
 					});
 				break;
@@ -114,18 +113,12 @@ module.exports = function(RED) {
 						return;
 					}
 					VapixWrapper.ACAP_Control( device, "remove", acap, function(error, response){
+						msg.error = error;
+						msg.payload = response;
 						if( error )
 							node.status({fill:"red",shape:"dot",text:"Removing ACAP failed"});
 						else
 							node.status({fill:"green",shape:"dot",text:"ACAP removed"});
-						msg.error = error;
-						msg.payload = response;
-						console.log(response);
-						if( response.search("Error: 4") >= 0) {
-							msg.error = false;
-							msg.payload = "ACAP not installed";
-							node.status({fill:"green",shape:"dot",text:"ACAP not present"});
-						}
 						node.send(msg);
 					});
 				break;
