@@ -1,4 +1,7 @@
 ## Version 1.2.0
+* Bumped vapiz-wrapper to 1.2.6 for conformity
+
+## Version 1.2.0
 * Fixed faulty response from ACAP Start/Stop/Remove
 
 ## Version 1.1.0
