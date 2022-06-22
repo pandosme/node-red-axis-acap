@@ -41,6 +41,10 @@ module.exports = function(RED) {
 					VapixWrapper.ACAP_List( device, function( error, list ) {
 						msg.error = error;
 						msg.payload = list;
+						if(error) {
+							node.send(msg);
+							return;
+						}
 						if( acap ) {
 							var selectedACAP = null;
 							list.forEach( function( item ){
